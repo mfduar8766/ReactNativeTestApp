@@ -1,15 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
+import GlobalProvider from './context';
+import HomePage from './screens';
 
-export default function App() {
+const App = () => {
+  // const url = `https://randomuser.me/api/?results=5`;
+  // const url = `https://jsonplaceholder.typicode.com/todos/5`;
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <GlobalProvider>
+      <SafeAreaView style={styles.container}>
+        <HomePage />
+      </SafeAreaView>
+    </GlobalProvider>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
@@ -17,5 +23,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
   },
 });
