@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import {
   View,
-  FlatList,
-  TouchableOpacity,
+  // FlatList,
+  // TouchableOpacity,
   StyleSheet,
   Text,
 } from 'react-native';
@@ -10,8 +10,9 @@ import { DispatchContext } from '../context';
 import { IUser } from '../models/users.interface';
 import { setError, setUsers } from '../resolvers';
 import UseFetch from '../services/useFetch';
+// import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const HomePage = () => {
+const HomePage = ({ navigation }: any) => {
   const url = `https://randomuser.me/api/?results=5`;
   const dispatch = useContext(DispatchContext);
   const [userList, setUserList] = useState<IUser[]>([]);
@@ -23,39 +24,34 @@ const HomePage = () => {
     }
     setUserList(data);
     setUsers(data, dispatch);
-  }, [data]);
+  }, [data, errorMessage]);
 
   const getUserInfo = (user: IUser) => console.log('User', user);
 
-  if (errorMessage !== '' && !data.length) {
-    return (
-      <View style={styles.container}>
-        <Text>No users available</Text>
-      </View>
-    );
-  }
-
   return (
-    <View>
-      {userList && userList.length ? (
-        <FlatList
-          style={{ flex: 1, width: 100 }}
-          data={userList}
-          renderItem={({ item }: any) => (
-            <TouchableOpacity
-              style={{ padding: 10 }}
-              onPress={() => getUserInfo(item)}
-            >
-              <Text>{`${item.name.first} ${item.name.last}`}</Text>
-            </TouchableOpacity>
-          )}
-        />
-      ) : (
-        <View style={styles.container}>
-          <Text>No Users Found</Text>
-        </View>
-      )}
+    <View style={styles.container}>
+      <Text>HOME SCREEN</Text>
     </View>
+    // <View>
+    //   {userList && userList.length ? (
+    //     <FlatList
+    //       style={{ flex: 1, width: 100 }}
+    //       data={userList}
+    //       renderItem={({ item }) => (
+    //         <TouchableOpacity
+    //           style={{ padding: 10 }}
+    //           onPress={() => getUserInfo(item)}
+    //         >
+    //           <Text>{`${item.name.first} ${item.name.last}`}</Text>
+    //         </TouchableOpacity>
+    //       )}
+    //     />
+    //   ) : (
+    //     <>
+    //       <Ionicons name="refresh-outline" size={5} color="blue" />
+    //     </>
+    //   )}
+    // </View>
   );
 };
 

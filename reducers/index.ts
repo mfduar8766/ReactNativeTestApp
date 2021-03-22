@@ -28,7 +28,7 @@ export const AppReducer = (state: IAppState, action: IActions): IAppState => {
     case DELETE_USER:
       return {
         ...state,
-        users: state.users.filter((todo: IUser) => todo.id !== payload),
+        users: state.users.filter((user: IUser) => user.id.value !== payload),
       };
     case SET_ERROR:
       return {
