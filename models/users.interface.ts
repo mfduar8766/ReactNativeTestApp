@@ -83,3 +83,8 @@ export interface IUsers {
   status: number;
   data: Response;
 }
+
+export interface INotifications {
+  id: string;
+  count: number;
+}

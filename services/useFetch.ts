@@ -11,9 +11,9 @@ const UseFetch = (url: string) => {
         const response = await axios.get<any, IUsers>(url);
         if (response.status === 200 && response.data.results.length) {
           const modefiedUser = response.data.results.map(
-            (user: IUser, index: number) => ({
+            (user: IUser) => ({
               ...user,
-              Key: index,
+              Key: user.name.first,
             })
           );
           setData(modefiedUser);
@@ -23,7 +23,7 @@ const UseFetch = (url: string) => {
       }
     };
     userInfo();
-  }, []);
+  }, [url]);
   return { data, errorMessage };
 };
 

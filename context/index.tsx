@@ -6,16 +6,11 @@ const initialState: IAppState = {
   users: [],
   error: '',
   isLoggedIn: false,
+  notifications: [],
 };
 
 export const DispatchContext = createContext<any>({});
 export const StateContext = createContext(initialState);
-
-// const ComposeProvider = ({ contexts, children }) => {
-//   return contexts.reduceRight((kids, parent) => cloneElement(parent, {
-//     children: kids,
-//   }), children)
-// }
 
 const GlobalProvider = ({
   children,
@@ -31,19 +26,3 @@ const GlobalProvider = ({
 };
 
 export default GlobalProvider;
-
-// export const GlobalState = {
-//   StateContext,
-//   DispatchContext,
-//   GlobalProvider,
-// };
-
-// const providers = [<GlobalState.GlobalProvider />];
-// const Store = ({ children }: any) => {
-//   return providers.reduceRight(
-//     (child, parent) => React.cloneElement(parent, { child }),
-//     children
-//   );
-// };
-
-// export { Store };
